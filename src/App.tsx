@@ -1,11 +1,11 @@
-import { UserLanguageProvider } from './context/UserLanguageContext';
+import { LanguageProvider } from './context/LanguageContext';
 import Page from './pages/Pages';
 
 function App() {
   return (
-    <UserLanguageProvider>
+    <LanguageProvider>
       <Page />
-    </UserLanguageProvider>
+    </LanguageProvider>
   );
 }
 

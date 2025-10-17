@@ -4,7 +4,8 @@ import {
   Button, 
   Space, 
   Typography, 
-  Drawer
+  Drawer,
+  Select
 } from 'antd';
 import {
   MenuOutlined,
@@ -13,10 +14,13 @@ import {
   MessageOutlined,
   BookOutlined,
   PhoneOutlined,
-  MailOutlined
+  MailOutlined,
+  GlobalOutlined
 } from '@ant-design/icons';
 import { useNavigate, useLocation } from 'react-router-dom';
-import UserLanguageSelector from '../../../components/UserLanguageSelector';
+import { useLanguage } from '../../../context/LanguageContext';
+import AnimatedButton from '../../../components/AnimatedButton';
+import NavigationMenu from '../../../components/NavigationMenu';
 import logoBanner from '../../../assets/images/logo_header/logo_banner.png';
 
 const { Header } = Layout;
@@ -27,7 +31,7 @@ const HomePageHeader: React.FC = () => {
   const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  // Removed authentication features for homepage-only structure
+  const { language, setLanguage, t } = useLanguage();
 
   // Handle scroll effect
   useEffect(() => {
@@ -43,25 +47,25 @@ const HomePageHeader: React.FC = () => {
   const menuItems = [
     {
       key: 'home',
-      label: 'Trang chủ',
+      label: t('nav.home'),
       icon: <HomeOutlined />,
       onClick: () => navigate('/')
     },
     {
       key: 'download',
-      label: 'Download',
+      label: t('nav.download'),
       icon: <DownloadOutlined />,
       onClick: () => navigate('/apk-download')
     },
     {
       key: 'guide',
-      label: 'Hướng dẫn sử dụng',
+      label: t('nav.guide'),
       icon: <BookOutlined />,
       onClick: () => navigate('/guide')
     },
     {
       key: 'feedback',
-      label: 'Feedback',
+      label: t('nav.feedback'),
       icon: <MessageOutlined />,
       onClick: () => navigate('/feedback')
     }
@@ -138,81 +142,55 @@ const HomePageHeader: React.FC = () => {
             {/* Center - Navigation Menu */}
             <div style={{ 
               display: window.innerWidth > 768 ? 'flex' : 'none', 
-              gap: '8px',
               position: 'absolute',
               left: '50%',
-              transform: 'translateX(-50%)'
+              transform: 'translateX(-50%)',
+              maxWidth: '600px',
+              overflow: 'hidden'
             }}>
-              {menuItems.map((item, index) => (
-                <Button
-                  key={item.key}
-                  type="text"
-                  icon={item.icon}
-                  onClick={item.onClick}
-                  style={{
-                    borderRadius: '20px',
-                    height: '36px',
-                    padding: '0 16px',
-                    fontWeight: '500',
-                    fontSize: '14px',
-                    color: location.pathname === item.key || 
-                           (item.key === 'home' && location.pathname === '/') 
-                           ? '#1890ff' : '#666',
-                    background: location.pathname === item.key || 
-                               (item.key === 'home' && location.pathname === '/') 
-                               ? 'rgba(24, 144, 255, 0.1)' : 'transparent',
-                    transition: 'all 0.3s ease',
-                    border: 'none'
-                  }}
-                  onMouseEnter={(e) => {
-                    if (location.pathname !== item.key && !(item.key === 'home' && location.pathname === '/')) {
-                      e.currentTarget.style.background = 'rgba(24, 144, 255, 0.05)';
-                      e.currentTarget.style.color = '#1890ff';
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (location.pathname !== item.key && !(item.key === 'home' && location.pathname === '/')) {
-                      e.currentTarget.style.background = 'transparent';
-                      e.currentTarget.style.color = '#666';
-                    }
-                  }}
-                >
-                  {item.label}
-                </Button>
-              ))}
+              <NavigationMenu 
+                items={menuItems} 
+                style={{
+                  flexWrap: 'nowrap',
+                  overflow: 'hidden'
+                }}
+              />
             </div>
 
             {/* Right Side - Actions */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <div style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: window.innerWidth > 480 ? '12px' : '8px',
+              flexWrap: 'nowrap'
+            }}>
               {/* Language Selector */}
-              <UserLanguageSelector />
+              <Select
+                value={language}
+                onChange={setLanguage}
+                style={{ 
+                  width: window.innerWidth > 480 ? 120 : 100,
+                  borderRadius: '20px',
+                  fontSize: '12px'
+                }}
+                suffixIcon={<GlobalOutlined />}
+                options={[
+                  { value: 'vi', label: window.innerWidth > 480 ? '🇻🇳 Tiếng Việt' : '🇻🇳 VI' },
+                  { value: 'en', label: window.innerWidth > 480 ? '🇺🇸 English' : '🇺🇸 EN' }
+                ]}
+              />
 
               {/* Contact Button */}
-              <Button
-                type="primary"
+              <AnimatedButton
+                variant="primary"
                 icon={<PhoneOutlined />}
                 onClick={() => navigate('/feedback')}
-                style={{
-                  borderRadius: '20px',
-                  height: '36px',
-                  padding: '0 16px',
-                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                  border: 'none',
-                  fontWeight: '500',
-                  fontSize: '14px',
-                  transition: 'all 0.3s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-1px)';
-                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(102, 126, 234, 0.3)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = 'none';
-                }}
+                glowEffect={true}
+                shimmerEffect={true}
+                size={window.innerWidth > 480 ? 'medium' : 'small'}
               >
-                Liên hệ
-              </Button>
+                {window.innerWidth > 480 ? t('nav.contact') : <PhoneOutlined />}
+              </AnimatedButton>
 
               {/* Mobile Menu Button */}
               <Button
@@ -228,7 +206,8 @@ const HomePageHeader: React.FC = () => {
                   display: window.innerWidth <= 768 ? 'flex' : 'none',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  transition: 'all 0.3s ease'
+                  transition: 'all 0.3s ease',
+                  flexShrink: 0
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'scale(1.1)';
@@ -246,7 +225,7 @@ const HomePageHeader: React.FC = () => {
 
       {/* Mobile Menu Drawer */}
       <Drawer
-        title="Menu"
+        title={t('mobile.menu.title')}
         placement="right"
         onClose={() => setMobileMenuVisible(false)}
         open={mobileMenuVisible}
@@ -284,7 +263,7 @@ const HomePageHeader: React.FC = () => {
           
           <div style={{ marginTop: '20px', paddingTop: '20px', borderTop: '1px solid #f0f0f0' }}>
             <Text type="secondary" style={{ fontSize: '14px' }}>
-              Liên hệ hỗ trợ
+              {t('mobile.menu.contact')}
             </Text>
             <Space direction="vertical" size={8} style={{ width: '100%', marginTop: '12px' }}>
               <Space>

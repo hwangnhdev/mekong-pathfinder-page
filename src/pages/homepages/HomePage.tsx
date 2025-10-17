@@ -43,6 +43,7 @@ import {
   PlayCircleOutlined
 } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext';
 import HomePageHeader from './header/header';
 import HomePageFooter from './footer/footer';
 
@@ -50,72 +51,73 @@ const { Title, Paragraph, Text } = Typography;
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   const features = [
     {
       icon: <EnvironmentOutlined style={{ color: '#52c41a', fontSize: '32px' }} />,
-      title: 'Bản đồ thông minh',
-      description: 'Tích hợp bản đồ chi tiết với thông tin giao thông thời gian thực'
+      title: t('home.features.map.title'),
+      description: t('home.features.map.desc')
     },
     {
       icon: <ClockCircleOutlined style={{ color: '#1890ff', fontSize: '32px' }} />,
-      title: 'Thời tiết chính xác',
-      description: 'Dự báo thời tiết chính xác cho khu vực Đồng bằng sông Cửu Long'
+      title: t('home.features.weather.title'),
+      description: t('home.features.weather.desc')
     },
     {
       icon: <SafetyOutlined style={{ color: '#faad14', fontSize: '32px' }} />,
-      title: 'An toàn tuyệt đối',
-      description: 'Cảnh báo sớm về lũ lụt và các hiện tượng thời tiết nguy hiểm'
+      title: t('home.features.safety.title'),
+      description: t('home.features.safety.desc')
     },
     {
       icon: <TeamOutlined style={{ color: '#722ed1', fontSize: '32px' }} />,
-      title: 'Cộng đồng',
-      description: 'Kết nối với cộng đồng người dùng và chia sẻ thông tin hữu ích'
+      title: t('home.features.community.title'),
+      description: t('home.features.community.desc')
     }
   ];
 
   const steps = [
     {
-      title: 'Tải ứng dụng',
-      description: 'Tải APK từ website hoặc Google Play Store',
+      title: t('home.howto.step1'),
+      description: t('home.howto.step1.desc'),
       icon: <DownloadOutlined />
     },
     {
-      title: 'Đăng ký tài khoản',
-      description: 'Tạo tài khoản để sử dụng đầy đủ tính năng',
+      title: t('home.howto.step2'),
+      description: t('home.howto.step2.desc'),
       icon: <UserOutlined />
     },
     {
-      title: 'Khám phá tính năng',
-      description: 'Sử dụng các tính năng bản đồ, thời tiết và cộng đồng',
+      title: t('home.howto.step3'),
+      description: t('home.howto.step3.desc'),
       icon: <RocketOutlined />
     },
     {
-      title: 'Chia sẻ trải nghiệm',
-      description: 'Góp ý và chia sẻ với cộng đồng người dùng',
+      title: t('home.howto.step4'),
+      description: t('home.howto.step4.desc'),
       icon: <MessageOutlined />
     }
   ];
 
   const testimonials = [
     {
-      name: 'Nguyễn Văn A',
-      role: 'Nông dân',
-      content: 'Ứng dụng giúp tôi theo dõi thời tiết và lũ lụt rất hiệu quả. Cảm ơn team phát triển!',
+      name: t('home.testimonials.user1.name'),
+      role: t('home.testimonials.user1.role'),
+      content: t('home.testimonials.user1.content'),
       rating: 5,
       avatar: null
     },
     {
-      name: 'Trần Thị B',
-      role: 'Sinh viên',
-      content: 'Giao diện đẹp, dễ sử dụng. Tính năng bản đồ rất chính xác và hữu ích.',
+      name: t('home.testimonials.user2.name'),
+      role: t('home.testimonials.user2.role'),
+      content: t('home.testimonials.user2.content'),
       rating: 5,
       avatar: null
     },
     {
-      name: 'Lê Văn C',
-      role: 'Tài xế',
-      content: 'Thông tin giao thông thời gian thực giúp tôi tránh được nhiều đoạn đường tắc.',
+      name: t('home.testimonials.user3.name'),
+      role: t('home.testimonials.user3.role'),
+      content: t('home.testimonials.user3.content'),
       rating: 4,
       avatar: null
     }
@@ -124,46 +126,46 @@ const HomePage: React.FC = () => {
   const achievements = [
     {
       icon: <TrophyOutlined style={{ color: '#faad14' }} />,
-      title: 'Giải thưởng',
-      description: 'Ứng dụng tốt nhất 2024'
+      title: t('home.achievements.award.title'),
+      description: t('home.achievements.award.desc')
     },
     {
       icon: <StarOutlined style={{ color: '#52c41a' }} />,
-      title: 'Đánh giá',
-      description: '4.8/5 sao từ người dùng'
+      title: t('home.achievements.rating.title'),
+      description: t('home.achievements.rating.desc')
     },
     {
       icon: <GlobalOutlined style={{ color: '#1890ff' }} />,
-      title: 'Người dùng',
-      description: 'Hơn 10,000 người tin dùng'
+      title: t('home.achievements.users.title'),
+      description: t('home.achievements.users.desc')
     },
     {
       icon: <HeartOutlined style={{ color: '#ff4d4f' }} />,
-      title: 'Hỗ trợ',
-      description: '24/7 hỗ trợ người dùng'
+      title: t('home.achievements.support.title'),
+      description: t('home.achievements.support.desc')
     }
   ];
 
   const carouselItems = [
     {
-      title: 'Khám phá Mekong Pathfinder',
-      description: 'Ứng dụng di động thông minh cho khu vực Đồng bằng sông Cửu Long',
+      title: t('home.hero.title1'),
+      description: t('home.hero.desc1'),
       image: logoBanner,
-      buttonText: 'Tìm hiểu thêm',
+      buttonText: t('home.hero.button1'),
       buttonAction: () => navigate('/apk-download')
     },
     {
-      title: 'Theo dõi thời tiết chính xác',
-      description: 'Dự báo thời tiết và cảnh báo lũ lụt thời gian thực',
+      title: t('home.hero.title2'),
+      description: t('home.hero.desc2'),
       image: banner,
-      buttonText: 'Xem demo',
+      buttonText: t('home.hero.button2'),
       buttonAction: () => navigate('/feedback')
     },
     {
-      title: 'Cộng đồng người dùng',
-      description: 'Kết nối và chia sẻ thông tin với cộng đồng',
+      title: t('home.hero.title3'),
+      description: t('home.hero.desc3'),
       image: logoBanner,
-      buttonText: 'Tham gia',
+      buttonText: t('home.hero.button3'),
       buttonAction: () => navigate('/feedback')
     }
   ];
@@ -171,36 +173,48 @@ const HomePage: React.FC = () => {
   return (
     <>
       <HomePageHeader />
-      <div style={{ padding: '24px', maxWidth: '1200px', margin: '0 auto' }}>
+      <div style={{ 
+        padding: window.innerWidth > 768 ? '24px' : '16px', 
+        maxWidth: '1200px', 
+        margin: '0 auto' 
+      }}>
         <Space direction="vertical" size={32} style={{ width: '100%' }}>
         {/* Hero Section */}
         <Card>
           <Carousel autoplay autoplaySpeed={5000} lazyLoad="ondemand">
             {carouselItems.map((item, index) => (
               <div key={index}>
-                <Row gutter={[24, 24]} align="middle" style={{ minHeight: '400px' }}>
+                <Row gutter={[24, 24]} align="middle" style={{ 
+                  minHeight: window.innerWidth > 768 ? '400px' : '300px' 
+                }}>
                   <Col xs={24} md={12}>
                     <Space direction="vertical" size={24}>
-                      <Title level={1} style={{ margin: 0 }}>
+                      <Title level={1} style={{ 
+                        margin: 0,
+                        fontSize: window.innerWidth > 768 ? '32px' : '24px'
+                      }}>
                         {item.title}
                       </Title>
-                      <Paragraph style={{ fontSize: '18px', lineHeight: 1.6 }}>
+                      <Paragraph style={{ 
+                        fontSize: window.innerWidth > 768 ? '18px' : '16px', 
+                        lineHeight: 1.6 
+                      }}>
                         {item.description}
                       </Paragraph>
                       <Space wrap>
                         <Button 
                           type="primary" 
-                          size="large" 
+                          size={window.innerWidth > 768 ? 'large' : 'middle'}
                           icon={<ArrowRightOutlined />}
                           onClick={item.buttonAction}
                         >
                           {item.buttonText}
                         </Button>
                         <Button 
-                          size="large" 
+                          size={window.innerWidth > 768 ? 'large' : 'middle'}
                           icon={<PlayCircleOutlined />}
                         >
-                          Xem video
+                          {t('home.hero.video')}
                         </Button>
                       </Space>
                     </Space>
@@ -211,8 +225,8 @@ const HomePage: React.FC = () => {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      height: '400px',
-                      padding: '20px'
+                      height: window.innerWidth > 768 ? '400px' : '250px',
+                      padding: window.innerWidth > 768 ? '20px' : '10px'
                     }}>
                       <img 
                         src={item.image} 
@@ -247,7 +261,7 @@ const HomePage: React.FC = () => {
         </Card>
 
         {/* Quick Actions */}
-        <Card title="Hành động nhanh">
+        <Card title={t('home.quick.title')}>
           <Row gutter={[16, 16]}>
             <Col xs={24} sm={8}>
               <Card 
@@ -257,8 +271,8 @@ const HomePage: React.FC = () => {
               >
                 <Space direction="vertical" size={16}>
                   <DownloadOutlined style={{ fontSize: '48px', color: '#52c41a' }} />
-                  <Title level={4} style={{ margin: 0 }}>Tải ứng dụng</Title>
-                  <Text type="secondary">Tải APK và cài đặt ứng dụng</Text>
+                  <Title level={4} style={{ margin: 0 }}>{t('home.quick.download')}</Title>
+                  <Text type="secondary">{t('home.quick.download.desc')}</Text>
                 </Space>
               </Card>
             </Col>
@@ -270,8 +284,8 @@ const HomePage: React.FC = () => {
               >
                 <Space direction="vertical" size={16}>
                   <MessageOutlined style={{ fontSize: '48px', color: '#1890ff' }} />
-                  <Title level={4} style={{ margin: 0 }}>Góp ý</Title>
-                  <Text type="secondary">Chia sẻ ý kiến và phản hồi</Text>
+                  <Title level={4} style={{ margin: 0 }}>{t('home.quick.feedback')}</Title>
+                  <Text type="secondary">{t('home.quick.feedback.desc')}</Text>
                 </Space>
               </Card>
             </Col>
@@ -283,8 +297,8 @@ const HomePage: React.FC = () => {
               >
                 <Space direction="vertical" size={16}>
                   <InfoCircleOutlined style={{ fontSize: '48px', color: '#faad14' }} />
-                  <Title level={4} style={{ margin: 0 }}>Hướng dẫn</Title>
-                  <Text type="secondary">Tìm hiểu cách sử dụng</Text>
+                  <Title level={4} style={{ margin: 0 }}>{t('home.quick.guide')}</Title>
+                  <Text type="secondary">{t('home.quick.guide.desc')}</Text>
                 </Space>
               </Card>
             </Col>
@@ -292,7 +306,7 @@ const HomePage: React.FC = () => {
         </Card>
 
         {/* Features Section */}
-        <Card title="Tính năng nổi bật">
+        <Card title={t('home.features.title')}>
           <Row gutter={[16, 16]}>
             {features.map((feature, index) => (
               <Col xs={24} sm={12} md={6} key={index}>
@@ -311,7 +325,7 @@ const HomePage: React.FC = () => {
         </Card>
 
         {/* How to Use */}
-        <Card title="Hướng dẫn sử dụng">
+        <Card title={t('home.howto.title')}>
           <Row gutter={[24, 24]}>
             <Col xs={24} md={12}>
               <Steps
@@ -326,14 +340,13 @@ const HomePage: React.FC = () => {
             </Col>
             <Col xs={24} md={12}>
               <Space direction="vertical" size={16} style={{ width: '100%' }}>
-                <Title level={4}>Bắt đầu ngay hôm nay</Title>
+                <Title level={4}>{t('home.howto.start.title')}</Title>
                 <Paragraph>
-                  Chỉ với vài bước đơn giản, bạn có thể bắt đầu sử dụng ứng dụng 
-                  Mekong Pathfinder và khám phá các tính năng tuyệt vời.
+                  {t('home.howto.start.desc')}
                 </Paragraph>
                 <Alert
-                  message="Lưu ý quan trọng"
-                  description="Ứng dụng yêu cầu Android 6.0 trở lên và kết nối Internet để hoạt động tốt nhất."
+                  message={t('home.howto.note.title')}
+                  description={t('home.howto.note.desc')}
                   type="info"
                   showIcon
                 />
@@ -344,7 +357,7 @@ const HomePage: React.FC = () => {
                   onClick={() => navigate('/apk-download')}
                   style={{ width: '100%' }}
                 >
-                  Tải ứng dụng ngay
+                  {t('home.howto.download')}
                 </Button>
               </Space>
             </Col>
@@ -352,7 +365,7 @@ const HomePage: React.FC = () => {
         </Card>
 
         {/* Achievements */}
-        <Card title="Thành tựu">
+        <Card title={t('home.achievements.title')}>
           <Row gutter={[16, 16]}>
             {achievements.map((achievement, index) => (
               <Col xs={24} sm={12} md={6} key={index}>
@@ -369,7 +382,7 @@ const HomePage: React.FC = () => {
         </Card>
 
         {/* Testimonials */}
-        <Card title="Người dùng nói gì">
+        <Card title={t('home.testimonials.title')}>
           <Row gutter={[16, 16]}>
             {testimonials.map((testimonial, index) => (
               <Col xs={24} md={8} key={index}>
@@ -404,16 +417,16 @@ const HomePage: React.FC = () => {
         </Card>
 
         {/* Contact & Support */}
-        <Card title="Liên hệ & Hỗ trợ">
+        <Card title={t('home.contact.title')}>
           <Row gutter={[24, 24]}>
             <Col xs={24} md={12}>
               <Space direction="vertical" size={16} style={{ width: '100%' }}>
-                <Title level={4}>Thông tin liên hệ</Title>
+                <Title level={4}>{t('home.contact.info.title')}</Title>
                 <List
                   dataSource={[
-                    { icon: <MailOutlined />, text: 'Email: support@mekongpathfinder.com' },
-                    { icon: <PhoneOutlined />, text: 'Hotline: 1900-xxxx' },
-                    { icon: <ClockCircleOutlined />, text: 'Thời gian: 8:00 - 17:00 (T2-T6)' }
+                    { icon: <MailOutlined />, text: t('home.contact.info.email') },
+                    { icon: <PhoneOutlined />, text: t('home.contact.info.phone') },
+                    { icon: <ClockCircleOutlined />, text: t('home.contact.info.time') }
                   ]}
                   renderItem={item => (
                     <List.Item>
@@ -428,25 +441,25 @@ const HomePage: React.FC = () => {
             </Col>
             <Col xs={24} md={12}>
               <Space direction="vertical" size={16} style={{ width: '100%' }}>
-                <Title level={4}>Hỗ trợ nhanh</Title>
+                <Title level={4}>{t('home.contact.support.title')}</Title>
                 <Space wrap>
                   <Button 
                     type="primary" 
                     icon={<MessageOutlined />}
                     onClick={() => navigate('/feedback')}
                   >
-                    Gửi góp ý
+                    {t('home.contact.support.feedback')}
                   </Button>
                   <Button 
                     icon={<DownloadOutlined />}
                     onClick={() => navigate('/apk-download')}
                   >
-                    Tải ứng dụng
+                    {t('home.contact.support.download')}
                   </Button>
                 </Space>
                 <Alert
-                  message="Cần hỗ trợ?"
-                  description="Chúng tôi luôn sẵn sàng hỗ trợ bạn. Hãy liên hệ qua email hoặc gửi góp ý trực tiếp."
+                  message={t('home.contact.help.title')}
+                  description={t('home.contact.help.desc')}
                   type="success"
                   showIcon
                 />
