@@ -219,7 +219,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
         translation = translation.replace(`{${paramKey}}`, String(value));
       });
     }
-    
+
     return translation;
   };
 

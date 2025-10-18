@@ -58,12 +58,6 @@ const HomePageHeader: React.FC = () => {
       onClick: () => navigate('/apk-download')
     },
     {
-      key: 'guide',
-      label: t('nav.guide'),
-      icon: <BookOutlined />,
-      onClick: () => navigate('/guide')
-    },
-    {
       key: 'feedback',
       label: t('nav.feedback'),
       icon: <MessageOutlined />,
@@ -109,7 +103,7 @@ const HomePageHeader: React.FC = () => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            height: '60px'
+            height: '70px'
           }}>
             {/* Left Side - Logo */}
             <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -145,8 +139,9 @@ const HomePageHeader: React.FC = () => {
               position: 'absolute',
               left: '50%',
               transform: 'translateX(-50%)',
-              maxWidth: '600px',
-              overflow: 'hidden'
+              maxWidth: '700px',
+              overflow: 'hidden',
+              zIndex: 1
             }}>
               <NavigationMenu 
                 items={menuItems} 
@@ -162,7 +157,8 @@ const HomePageHeader: React.FC = () => {
               display: 'flex', 
               alignItems: 'center', 
               gap: window.innerWidth > 480 ? '12px' : '8px',
-              flexWrap: 'nowrap'
+              flexWrap: 'nowrap',
+              zIndex: 2
             }}>
               {/* Language Selector */}
               <Select
@@ -280,7 +276,7 @@ const HomePageHeader: React.FC = () => {
       </Drawer>
 
       {/* Spacer for fixed header */}
-      <div style={{ height: '80px' }} />
+      <div style={{ height: '90px' }} />
     </>
   );
 };

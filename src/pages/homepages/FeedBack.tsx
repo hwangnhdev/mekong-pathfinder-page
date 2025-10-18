@@ -200,22 +200,35 @@ const FeedBack: React.FC = () => {
 
   return (
     <>
-      <HomePageHeader />
-      <div style={{ padding: '100px 24px 24px', maxWidth: '1200px', margin: '0 auto' }}>
-        <Space direction="vertical" size={24} style={{ width: '100%' }}>
+      <div style={{ 
+        padding: '100px 0 0 0', 
+        width: '100%', 
+        margin: '0',
+        background: 'rgb(52, 52, 139)',
+        minHeight: '100vh'
+      }}>
+        <Space direction="vertical" size={24} style={{ width: '100%', padding: '0 24px' }}>
         {/* Header Section */}
-        <Card>
+        <HomePageHeader />
+
+        <Card style={{
+          background: 'rgba(255, 255, 255, 0.05)',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
+          borderRadius: '20px',
+          boxShadow: '0 15px 35px rgba(0, 0, 0, 0.2)',
+          backdropFilter: 'blur(10px)'
+        }}>
           <Row gutter={[24, 24]} align="middle">
             <Col xs={24} md={16}>
               <Space direction="vertical" size={16}>
-                <Title level={1} style={{ margin: 0 }}>
+                <Title level={1} style={{ margin: 0, color: '#fff' }}>
                   <MessageOutlined style={{ color: '#1890ff', marginRight: 12 }} />
                   Góp ý & Phản hồi
                 </Title>
-                <Title level={3} type="secondary" style={{ margin: 0 }}>
+                <Title level={3} style={{ margin: 0, color: 'rgba(255, 255, 255, 0.8)' }}>
                   Chia sẻ trải nghiệm của bạn
                 </Title>
-                <Paragraph style={{ fontSize: '16px', lineHeight: 1.6 }}>
+                <Paragraph style={{ fontSize: '16px', lineHeight: 1.6, color: 'rgba(255, 255, 255, 0.9)' }}>
                   Chúng tôi rất mong nhận được ý kiến đóng góp từ bạn để có thể cải thiện 
                   ứng dụng Mekong Pathfinder ngày một tốt hơn. Mọi góp ý đều được đánh giá cao!
                 </Paragraph>
@@ -255,9 +268,14 @@ const FeedBack: React.FC = () => {
         {/* Statistics */}
         <Row gutter={[16, 16]}>
           <Col xs={24} sm={8}>
-            <Card>
+            <Card style={{
+              background: 'rgba(255, 255, 255, 0.05)',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              borderRadius: '16px',
+              backdropFilter: 'blur(10px)'
+            }}>
               <Statistic
-                title="Tổng số góp ý"
+                title={<span style={{ color: 'rgba(255, 255, 255, 0.8)' }}>Tổng số góp ý</span>}
                 value={totalFeedbacks}
                 prefix={<CommentOutlined />}
                 valueStyle={{ color: '#1890ff' }}
@@ -265,9 +283,14 @@ const FeedBack: React.FC = () => {
             </Card>
           </Col>
           <Col xs={24} sm={8}>
-            <Card>
+            <Card style={{
+              background: 'rgba(255, 255, 255, 0.05)',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              borderRadius: '16px',
+              backdropFilter: 'blur(10px)'
+            }}>
               <Statistic
-                title="Đánh giá trung bình"
+                title={<span style={{ color: 'rgba(255, 255, 255, 0.8)' }}>Đánh giá trung bình</span>}
                 value={averageRating.toFixed(1)}
                 prefix={<StarOutlined />}
                 valueStyle={{ color: '#faad14' }}
@@ -276,9 +299,14 @@ const FeedBack: React.FC = () => {
             </Card>
           </Col>
           <Col xs={24} sm={8}>
-            <Card>
+            <Card style={{
+              background: 'rgba(255, 255, 255, 0.05)',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              borderRadius: '16px',
+              backdropFilter: 'blur(10px)'
+            }}>
               <Statistic
-                title="Phản hồi tích cực"
+                title={<span style={{ color: 'rgba(255, 255, 255, 0.8)' }}>Phản hồi tích cực</span>}
                 value={Math.round((feedbacks.filter(f => f.rating >= 4).length / totalFeedbacks) * 100)}
                 prefix={<LikeOutlined />}
                 valueStyle={{ color: '#52c41a' }}
@@ -289,7 +317,23 @@ const FeedBack: React.FC = () => {
         </Row>
 
         {/* Feedback Form */}
-        <Card title="Gửi góp ý của bạn">
+        <Card 
+          title="Gửi góp ý của bạn"
+          style={{
+            background: 'rgba(255, 255, 255, 0.05)',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            borderRadius: '20px',
+            boxShadow: '0 15px 35px rgba(0, 0, 0, 0.2)',
+            backdropFilter: 'blur(10px)'
+          }}
+          headStyle={{
+            background: 'transparent',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+            color: '#fff',
+            fontSize: '24px',
+            fontWeight: '700'
+          }}
+        >
           <Form
             form={form}
             layout="vertical"
@@ -451,7 +495,23 @@ const FeedBack: React.FC = () => {
         </Card>
 
         {/* Recent Feedbacks */}
-        <Card title="Góp ý gần đây">
+        <Card 
+          title="Góp ý gần đây"
+          style={{
+            background: 'rgba(255, 255, 255, 0.05)',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            borderRadius: '20px',
+            boxShadow: '0 15px 35px rgba(0, 0, 0, 0.2)',
+            backdropFilter: 'blur(10px)'
+          }}
+          headStyle={{
+            background: 'transparent',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+            color: '#fff',
+            fontSize: '24px',
+            fontWeight: '700'
+          }}
+        >
           <List
             dataSource={feedbacks}
             renderItem={(feedback) => (
@@ -504,15 +564,39 @@ const FeedBack: React.FC = () => {
         </Card>
 
         {/* Category Statistics */}
-        <Card title="Thống kê theo loại góp ý">
+        <Card 
+          title="Thống kê theo loại góp ý"
+          style={{
+            background: 'rgba(255, 255, 255, 0.05)',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            borderRadius: '20px',
+            boxShadow: '0 15px 35px rgba(0, 0, 0, 0.2)',
+            backdropFilter: 'blur(10px)'
+          }}
+          headStyle={{
+            background: 'transparent',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+            color: '#fff',
+            fontSize: '24px',
+            fontWeight: '700'
+          }}
+        >
           <Row gutter={[16, 16]}>
             {Object.entries(categoryStats).map(([category, count]) => (
               <Col xs={24} sm={8} md={6} key={category}>
-                <Card size="small">
+                <Card 
+                  size="small"
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.05)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    borderRadius: '12px',
+                    backdropFilter: 'blur(10px)'
+                  }}
+                >
                   <Space direction="vertical" align="center" style={{ width: '100%', textAlign: 'center' }}>
                     <div style={{ fontSize: '24px' }}>{getCategoryIcon(category)}</div>
-                    <Title level={4} style={{ margin: 0 }}>{count}</Title>
-                    <Text type="secondary">{getCategoryText(category)}</Text>
+                    <Title level={4} style={{ margin: 0, color: '#fff' }}>{count}</Title>
+                    <Text style={{ color: 'rgba(255, 255, 255, 0.8)' }}>{getCategoryText(category)}</Text>
                     <Progress 
                       percent={Math.round((count / totalFeedbacks) * 100)} 
                       size="small"
